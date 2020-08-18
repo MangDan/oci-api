@@ -7,7 +7,7 @@ var configs =
     compartmentId: 'ocid1.compartment.oc1..aaaaaaaa6mftkwknfsag2erfobxfjjvsikc6osihtddczhlglzxnwxamrdlq',
     region: 'ap-seoul-1',
     RESTversion: '/20171215', //20160918
-    privateKeyFile: 'oci_api_key.pem',
+    privateKeyFile: '../../../oci_api_key.pem',
     passphrase: '',
     papertrail: {
         host: 'logs2.papertrailapp.com',
