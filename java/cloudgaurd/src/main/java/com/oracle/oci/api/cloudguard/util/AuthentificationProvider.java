@@ -11,7 +11,7 @@ import com.oracle.bmc.Region;
 import com.oracle.bmc.auth.AuthenticationDetailsProvider;
 import com.oracle.bmc.auth.SimpleAuthenticationDetailsProvider;
 import com.oracle.bmc.auth.SimplePrivateKeySupplier;
-import com.oracle.oci.api.cloudguard.controller.CloudGuardController;
+import com.oracle.oci.api.cloudguard.controller.CloudGuardTargetController;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.tomcat.util.http.fileupload.IOUtils;
@@ -22,7 +22,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class AuthentificationProvider {
-    Logger logger = LoggerFactory.getLogger(CloudGuardController.class);
+    Logger logger = LoggerFactory.getLogger(CloudGuardTargetController.class);
     
     public AuthenticationDetailsProvider getAuthenticationDetailsProvider() throws IOException {
 
