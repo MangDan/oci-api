@@ -6,7 +6,9 @@ public class Target {
     private String description;
     private String compartmentId;
     private String lifecycleState;
-    private String lifecycleDetail;
+    private String targetResourceType;
+    private String timeCreated;
+    private String timeUpdated;
     
     public String getId() {
         return id;
@@ -38,12 +40,22 @@ public class Target {
     public void setLifecycleState(String lifecycleState) {
         this.lifecycleState = lifecycleState;
     }
-    public String getLifecycleDetail() {
-        return lifecycleDetail;
+    public String getTargetResourceType() {
+        return targetResourceType;
     }
-    public void setLifecycleDetail(String lifecycleDetail) {
-        this.lifecycleDetail = lifecycleDetail;
+    public void setTargetResourceType(String targetResourceType) {
+        this.targetResourceType = targetResourceType;
     }
-
-    
+    public String getTimeCreated() {
+        return timeCreated;
+    }
+    public void setTimeCreated(String timeCreated) {
+        this.timeCreated = timeCreated;
+    }
+    public String getTimeUpdated() {
+        return timeUpdated;
+    }
+    public void setTimeUpdated(String timeUpdated) {
+        this.timeUpdated = timeUpdated;
+    }
 }
