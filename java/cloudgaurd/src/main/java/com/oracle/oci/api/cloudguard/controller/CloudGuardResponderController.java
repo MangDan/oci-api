@@ -69,7 +69,7 @@ public class CloudGuardResponderController {
         return responderActivity;
     }
 
-    @RequestMapping(value = "/responder/actions/trigger/{id}", method = RequestMethod.POST)
+    @RequestMapping(value = "/responder/actions/remediate/{id}", method = RequestMethod.POST)
     public void remediate(@PathVariable("id") String id, @RequestParam("responder_rule_id") String responder_rule_id) throws Exception {
         CloudGuardClient client = new CloudGuardClient(authentificationProvider.getAuthenticationDetailsProvider());
 
