@@ -10,6 +10,7 @@ import com.oracle.bmc.cloudguard.model.ProblemSummary;
 import com.oracle.bmc.cloudguard.model.SortOrders;
 import com.oracle.bmc.cloudguard.requests.GetProblemRequest;
 import com.oracle.bmc.cloudguard.requests.ListProblemsRequest;
+import com.oracle.bmc.cloudguard.requests.ListProblemsRequest.AccessLevel;
 import com.oracle.bmc.cloudguard.responses.GetProblemResponse;
 import com.oracle.bmc.cloudguard.responses.ListProblemsResponse;
 import com.oracle.oci.api.cloudguard.dto.Problem;
@@ -80,6 +81,7 @@ public class CloudGuardProblemController {
 		.lifecycleDetail((lifecycleDetail.equals("DISMISSED") ? ProblemLifecycleDetail.Dismissed : (lifecycleDetail.equals("OPEN") ? ProblemLifecycleDetail.Open : ProblemLifecycleDetail.Resolved)))
 		.riskLevel(riskLevel)
 		.targetId(target_id)
+        .accessLevel(AccessLevel.Restricted)
         .compartmentIdInSubtree(true)
 		.sortOrder(SortOrders.Desc)
 		.sortBy(ListProblemsRequest.SortBy.ResourceName).build();
