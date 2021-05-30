@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: oci-cloudguard-api
-        image: icn.ocir.io/apackrsct01/madhack-gambas/oci-cloudguard-api:latest
+        image: iad.ocir.io/apackrsct01/madhack-gambas/oci-cloudguard-api:latest
         imagePullPolicy: Always
         ports:
         - name: http

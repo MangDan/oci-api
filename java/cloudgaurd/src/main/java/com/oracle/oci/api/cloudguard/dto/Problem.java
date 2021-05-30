@@ -9,6 +9,9 @@ public class Problem {
     private String resourceName;
     private String resourceType;
     private String riskLevel;
+    private String responderRuleId;
+    private String responderRuleName;
+    private boolean canRemediation;
     private String timeFirstDetected;
     private String timeLastDetected;
     
@@ -59,6 +62,24 @@ public class Problem {
     }
     public void setRiskLevel(String riskLevel) {
         this.riskLevel = riskLevel;
+    }
+    public String getResponderRuleId() {
+        return responderRuleId;
+    }
+    public void setResponderRuleId(String responderRuleId) {
+        this.responderRuleId = responderRuleId;
+    }
+    public String getResponderRuleName() {
+        return responderRuleName;
+    }
+    public void setResponderRuleName(String responderRuleName) {
+        this.responderRuleName = responderRuleName;
+    }
+    public boolean isCanRemediation() {
+        return canRemediation;
+    }
+    public void setCanRemediation(boolean canRemediation) {
+        this.canRemediation = canRemediation;
     }
     public String getTimeFirstDetected() {
         return timeFirstDetected;
