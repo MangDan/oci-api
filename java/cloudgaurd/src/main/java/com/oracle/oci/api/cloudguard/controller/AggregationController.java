@@ -8,9 +8,12 @@ import java.util.Map;
 import com.oracle.bmc.cloudguard.CloudGuardClient;
 import com.oracle.bmc.cloudguard.model.ProblemAggregation;
 import com.oracle.bmc.cloudguard.model.ProblemDimension;
+import com.oracle.bmc.cloudguard.model.RiskScoreAggregation;
 import com.oracle.bmc.cloudguard.model.SecurityScoreAggregation;
+import com.oracle.bmc.cloudguard.requests.RequestRiskScoresRequest;
 import com.oracle.bmc.cloudguard.requests.RequestSecurityScoresRequest;
 import com.oracle.bmc.cloudguard.requests.RequestSummarizedProblemsRequest;
+import com.oracle.bmc.cloudguard.responses.RequestRiskScoresResponse;
 import com.oracle.bmc.cloudguard.responses.RequestSecurityScoresResponse;
 import com.oracle.bmc.cloudguard.responses.RequestSummarizedProblemsResponse;
 import com.oracle.oci.api.cloudguard.util.AuthentificationProvider;
@@ -43,12 +46,18 @@ public class AggregationController {
         Map<String, String> resultMap = new HashMap<String, String>();
 
         for(SecurityScoreAggregation securityScoreAggregation : requestSecurityScoresResponse.getSecurityScoreAggregationCollection().getItems()) {
-            logger.info(securityScoreAggregation.getSecurityRating().getValue());
-            logger.info(Integer.toString(securityScoreAggregation.getSecurityScore()));
-            logger.info(securityScoreAggregation.getDimensionsMap().toString());
-
             resultMap.put("securityRating", securityScoreAggregation.getSecurityRating().getValue());
             resultMap.put("securityScore", Integer.toString(securityScoreAggregation.getSecurityScore()));
+        }
+
+        RequestRiskScoresRequest requestRiskScoresRequest = RequestRiskScoresRequest.builder()
+		.compartmentId(tenancy_id).build();
+
+        /* Send request to the Client */
+        RequestRiskScoresResponse requestRiskScoresResponse = client.requestRiskScores(requestRiskScoresRequest);
+
+        for(RiskScoreAggregation riskScoreAggregation : requestRiskScoresResponse.getRiskScoreAggregationCollection().getItems()) {
+            resultMap.put("riskScore", Integer.toString(riskScoreAggregation.getRiskScore()));
         }
 
         return resultMap;
