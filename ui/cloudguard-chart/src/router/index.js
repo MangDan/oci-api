@@ -1,14 +1,20 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import AggregatedProblems from '../views/AggregatedProblems.vue'
+import About from '../views/About.vue'
+import AggregatedProblemsView from '../views/AggregatedProblemsView.vue'
 
 Vue.use(VueRouter)
 
 const routes = [
   {
-    path: '/chart/aggregated_problems',
-    name: 'AggregatedProblems',
-    component: AggregatedProblems
+    path: '/cloudguard/aggregated_problems',
+    name: 'aggregatedProblemsView',
+    component: AggregatedProblemsView
+  },
+  {
+    path: '/',
+    name: 'about',
+    component: About
   }
 ]
 
