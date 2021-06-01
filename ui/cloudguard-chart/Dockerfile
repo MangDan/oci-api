@@ -17,7 +17,7 @@ RUN rm -rf /usr/share/nginx/html/*
 COPY --from=build-stage /app/dist /usr/share/nginx/html
 RUN rm /etc/nginx/conf.d/default.conf
 COPY docker/nginx/nginx.conf /etc/nginx/conf.d
-EXPOSE 80
+EXPOSE 8080
 CMD [ "nginx", "-g", "daemon off;" ]
 
 # #가상 머신에 오픈할 포트

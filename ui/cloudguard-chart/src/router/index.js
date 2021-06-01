@@ -2,14 +2,20 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import About from '../views/About.vue'
 import AggregatedProblemsView from '../views/AggregatedProblemsView.vue'
+import SecurityScoresView from '../views/SecurityScoresView.vue'
 
 Vue.use(VueRouter)
 
 const routes = [
   {
-    path: '/cloudguard/aggregated_problems',
+    path: '/cloudguard-chart/aggregated_problems',
     name: 'aggregatedProblemsView',
     component: AggregatedProblemsView
+  },
+  {
+    path: '/cloudguard-chart/security_scores',
+    name: 'securityScoresView',
+    component: SecurityScoresView
   },
   {
     path: '/',

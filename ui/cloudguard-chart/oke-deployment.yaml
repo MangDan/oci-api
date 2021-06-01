@@ -1,0 +1,41 @@
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: oci-cloudguard-chart
+  namespace: gambas
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: oci-cloudguard-chart
+  template:
+    metadata:
+      labels:
+        app: oci-cloudguard-chart
+    spec:
+      containers:
+      - name: oci-cloudguard-chart
+        image: iad.ocir.io/apackrsct01/madhack-gambas/oci-cloudguard-chart:latest
+        imagePullPolicy: Always
+        ports:
+        - name: http
+          containerPort: 8080
+          protocol: TCP
+      imagePullSecrets:
+        - name: mysecret
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: oci-cloudguard-chart
+  namespace: gambas
+  labels:
+    app: oci-cloudguard-chart
+spec:
+  ports:
+  - port: 8080
+    targetPort: 8080
+    name: http
+  selector:
+    app: oci-cloudguard-chart
+  type: LoadBalancer
