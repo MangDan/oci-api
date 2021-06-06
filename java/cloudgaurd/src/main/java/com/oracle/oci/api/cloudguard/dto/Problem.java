@@ -8,6 +8,7 @@ public class Problem {
     private String lifecycleState;
     private String resourceName;
     private String resourceType;
+    private String resourceCreator;
     private String riskLevel;
     private String responderRuleId;
     private String responderRuleName;
@@ -56,6 +57,12 @@ public class Problem {
     }
     public void setResourceType(String resourceType) {
         this.resourceType = resourceType;
+    }
+    public String getResourceCreator() {
+        return resourceCreator;
+    }
+    public void setResourceCreator(String resourceCreator) {
+        this.resourceCreator = resourceCreator;
     }
     public String getRiskLevel() {
         return riskLevel;

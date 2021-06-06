@@ -4,19 +4,22 @@
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve --open --mode production",
-    "dev": "vue-cli-service serve --open --mode development",
     "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "lint": "vue-cli-service lint",
+    "dev": "vue-cli-service serve --open --mode development"
   },
   "dependencies": {
     "axios": "^0.21.1",
     "chart.js": "^2.9.4",
+    "chartjs-node-canvas": "^3.2.0",
     "chartjs-plugin-datalabels": "^1.0.0",
     "chartjs-plugin-doughnutlabel": "^2.0.3",
+    "chartjs-to-image": "^1.0.4",
     "core-js": "^3.6.5",
     "vue": "^2.6.11",
     "vue-chart.js": "^0.2.0",
-    "vue-router": "^3.2.0"
+    "vue-router": "^3.2.0",
+    "vuetify": "^2.4.0"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.5.0",
@@ -26,7 +29,11 @@
     "babel-eslint": "^10.1.0",
     "eslint": "^6.7.2",
     "eslint-plugin-vue": "^6.2.2",
-    "vue-template-compiler": "^2.6.11"
+    "sass": "^1.32.0",
+    "sass-loader": "^10.0.0",
+    "vue-cli-plugin-vuetify": "~2.4.0",
+    "vue-template-compiler": "^2.6.11",
+    "vuetify-loader": "^1.7.0"
   },
   "eslintConfig": {
     "root": true,

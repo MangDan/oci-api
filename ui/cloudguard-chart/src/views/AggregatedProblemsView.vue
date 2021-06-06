@@ -48,9 +48,9 @@ export default {
         },
         animation: {
           animateRotate: false,
-          onComplete: function () {
-            console.log(this.toBase64Image());
-          },
+          // onComplete: function () {
+          //   var image = this.toBase64Image();
+          // },
         },
       },
       base64Img: null

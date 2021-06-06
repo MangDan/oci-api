@@ -22,6 +22,12 @@ import com.oracle.bmc.cloudguard.requests.UpdateProblemStatusRequest;
 import com.oracle.bmc.cloudguard.responses.GetProblemResponse;
 import com.oracle.bmc.cloudguard.responses.ListProblemsResponse;
 import com.oracle.bmc.cloudguard.responses.ListResponderActivitiesResponse;
+import com.oracle.bmc.resourcesearch.ResourceSearchClient;
+import com.oracle.bmc.resourcesearch.model.ResourceSummary;
+import com.oracle.bmc.resourcesearch.model.SearchDetails;
+import com.oracle.bmc.resourcesearch.model.StructuredSearchDetails;
+import com.oracle.bmc.resourcesearch.requests.SearchResourcesRequest;
+import com.oracle.bmc.resourcesearch.responses.SearchResourcesResponse;
 import com.oracle.oci.api.cloudguard.dto.Problem;
 import com.oracle.oci.api.cloudguard.util.AuthentificationProvider;
 
@@ -55,7 +61,7 @@ public class CloudGuardProblemController {
         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
         Problem problem = new Problem();
-
+  
         problem.setId(problemResponse.getProblem().getId());
         problem.setDescription(problemResponse.getProblem().getDescription());
         problem.setRecommendation(problemResponse.getProblem().getRecommendation());
@@ -66,7 +72,35 @@ public class CloudGuardProblemController {
         problem.setRiskLevel(problemResponse.getProblem().getRiskLevel().getValue());
         problem.setTimeFirstDetected(df.format(problemResponse.getProblem().getTimeFirstDetected()));
         problem.setTimeLastDetected(df.format(problemResponse.getProblem().getTimeLastDetected()));
-        
+
+        if(problemResponse.getProblem().getResourceType().equals("User")) {
+            problem.setResourceCreator(problemResponse.getProblem().getResourceName());
+        }
+
+        // For resource search
+        ResourceSearchClient resourceSearchClient = new ResourceSearchClient(authentificationProvider.getAuthenticationDetailsProvider());
+
+        logger.info(problemResponse.getProblem().getResourceType());
+
+        SearchDetails searchDetails = StructuredSearchDetails.builder()
+		.query("query " + problemResponse.getProblem().getResourceType().replace(" ", "").toLowerCase() + " resources where displayName = '"+problemResponse.getProblem().getResourceName()+"'")
+		.matchingContextType(SearchDetails.MatchingContextType.Highlights).build();
+
+	    SearchResourcesRequest searchResourcesRequest = SearchResourcesRequest.builder()
+		.searchDetails(searchDetails).build();
+
+        /* Send request to the Client */
+        SearchResourcesResponse searchResourcesResponse = resourceSearchClient.searchResources(searchResourcesRequest);
+        logger.info(Integer.toString(searchResourcesResponse.getResourceSummaryCollection().getItems().size()));
+
+        if(searchResourcesResponse.getResourceSummaryCollection().getItems().size() == 0) {
+            problem.setResourceCreator("");
+        } else {
+            for(ResourceSummary resourceSummary: searchResourcesResponse.getResourceSummaryCollection().getItems()) {
+                problem.setResourceCreator(resourceSummary.getDefinedTags().get("Oracle-Tags").get("CreatedBy").toString().replace("oracleidentitycloudservice/", ""));
+            }
+        }
+
         ListResponderActivitiesRequest listResponderActivitiesRequest = ListResponderActivitiesRequest.builder()
 		.problemId(problem.getId())
 		.limit(10)

@@ -48,6 +48,11 @@
     		<artifactId>oci-java-sdk-cloudguard</artifactId>
     		<version>1.36.5</version>
 		</dependency>
+		<dependency>
+			<groupId>com.oracle.oci.sdk</groupId>
+    		<artifactId>oci-java-sdk-resourcesearch</artifactId>
+    		<version>1.36.5</version>
+		</dependency>
 	</dependencies>
 
 	<build>
